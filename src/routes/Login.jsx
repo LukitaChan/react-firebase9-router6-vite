@@ -8,6 +8,8 @@ import { formValidate } from "../utils/formValidate";
 
 import FormError from "../components/FormError";
 import FormImput from "../components/FormImput";
+import Title from "../components/Title";
+import Button from "../components/Button";
 
 const Login = () => {
   //const [email, setEmail] = useState("galleta1@test.com");
@@ -36,10 +38,8 @@ const Login = () => {
       //console.log("Usuario creado (0w0)");
       navegate("/");
     } catch (error) {
-      console.log(error.code);
-      setError("firebase", {
-        message: erroresFirebase(error.code),
-      });
+      const { code, message } = erroresFirebase(error.code);
+      setError(code, { message: message });
     }
   };
 
@@ -54,21 +54,24 @@ const Login = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      <FormError error={errors.firebase} />
+      <Title text="Login" />
+      {/*  <FormError error={errors.firebase} /> */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormImput
+          label="Ingresa tu email"
           type="email"
           placeholder="Ingrese email"
           {...register("email", {
             required: required,
             pattern: patternEmail,
           })}
+          error={errors.email}
         >
           <FormError error={errors.email} />
         </FormImput>
 
         <FormImput
+          label="Ingresa tu password"
           type="password"
           placeholder="Ingrese password"
           {...register("password", {
@@ -76,11 +79,12 @@ const Login = () => {
             minLength: minLength,
             validate: validateTrim,
           })}
+          error={errors.password}
         >
           <FormError error={errors.password} />
         </FormImput>
 
-        <button type="submit">Register</button>
+        <Button text="Login" type="submit" />
       </form>
       {/* <h2>{user ? "Online" : "Offline"}</h2>
       <button onClick={handleClickLogin}>Acceder</button> */}
