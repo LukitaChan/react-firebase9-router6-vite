@@ -4,14 +4,16 @@ import App from "./App";
 import "./index.css";
 
 import { BrowserRouter } from "react-router-dom";
-import UseProvivider from "./context/UseProvider";
+import UserProvider from "./context/UseProvider";
+
+import "flowbite";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <UseProvivider>
+    <UserProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </UseProvivider>
+    </UserProvider>
   </React.StrictMode>
 );

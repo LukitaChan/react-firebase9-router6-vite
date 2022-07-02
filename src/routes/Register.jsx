@@ -1,11 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UseProvider";
 import { erroresFirebase } from "../utils/erroresFirebase";
-import FormError from "../components/FormError";
 import { formValidate } from "../utils/formValidate";
+
+import FormError from "../components/FormError";
 import FormImput from "../components/FormImput";
+import Title from "../components/Title";
+import Button from "../components/Button";
 
 const Register = () => {
   // const [email, setEmail] = useState("galleta1@test.com");
@@ -37,9 +40,8 @@ const Register = () => {
       navegate("/");
     } catch (error) {
       console.log(error.code);
-      setError("firebase", {
-        message: erroresFirebase(error.code),
-      });
+      const { code, message } = erroresFirebase(error.code);
+      setError(code, { message: message });
     }
   };
 
@@ -59,7 +61,7 @@ const Register = () => {
 
   return (
     <>
-      <h1>Register</h1>
+      <Title text="Register" />
       <FormError error={errors.firebase} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormImput
@@ -69,6 +71,8 @@ const Register = () => {
             required: required,
             pattern: patternEmail,
           })}
+          label="Ingresa tu email"
+          error={errors.email}
         >
           <FormError error={errors.email} />
         </FormImput>
@@ -81,6 +85,8 @@ const Register = () => {
             minLength: minLength,
             validate: validateTrim,
           })}
+          label="Ingrese password"
+          error={errors.password}
         >
           <FormError error={errors.password} />
         </FormImput>
@@ -90,13 +96,15 @@ const Register = () => {
           placeholder="Ingrese password"
           {...register("repassword", {
             setValues: (v) => v.trim(),
-            validate: validateEquals(getValues),
+            validate: validateEquals(getValues("password")),
           })}
+          label="Reingrese password"
+          error={errors.repassword}
         >
           <FormError error={errors.repassword} />
         </FormImput>
 
-        <button type="submit">Register</button>
+        <Button text="Register" type="submit" />
       </form>
     </>
   );
