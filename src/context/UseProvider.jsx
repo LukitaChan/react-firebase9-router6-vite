@@ -11,11 +11,12 @@ export const UserContext = createContext();
 
 const UserProvider = (props) => {
   const [user, setUser] = useState(false);
+
   //Para el metodo de deslogueo Web/comenzar/configura el observador
   useEffect(() => {
     //ell metodo onAuthStateChanged verificara si el usuario esta autenticado o no.
     const unsuscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      //console.log(user);
       if (user) {
         //destructuramos de user
         const { email, photoURL, displayName, uid } = user;
