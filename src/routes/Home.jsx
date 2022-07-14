@@ -69,19 +69,19 @@ const Home = () => {
 
   const handleClickCopy = async (nanoid) => {
     await navigator.clipboard.writeText(window.location.href + nanoid);
-    console.log("url copiada");
+    //console.log("url copiada");
     setCopy((prev) => ({ [nanoid]: true }));
   };
 
   return (
     <>
-      <Title text="Home" />
+      <Title text="Bienvenido al Administrador de URLs" />
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormImput
           label="Ingresa URL"
           type="text"
-          placeholder="https://www.instagram.com"
+          placeholder="https://github.com/LukitaChan"
           {...register("url", {
             required: required,
             pattern: patternURL,
