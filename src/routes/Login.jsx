@@ -10,7 +10,6 @@ import FormError from "../components/FormError";
 import FormImput from "../components/FormImput";
 import Title from "../components/Title";
 import Button from "../components/Button";
-import ButtonLoading from "../components/ButtonLoading";
 
 const Login = () => {
   //const [email, setEmail] = useState("galleta1@test.com");
@@ -26,13 +25,7 @@ const Login = () => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      email: "galleta1@test.com",
-      password: "Galleta12",
-      repassword: "Galleta12",
-    },
-  });
+  } = useForm();
 
   const onSubmit = async ({ email, password }) => {
     try {
@@ -89,7 +82,7 @@ const Login = () => {
           <FormError error={errors.password} />
         </FormImput>
 
-        <Button text="Login" type="submit" loading={loading} />
+        <Button text="Login" type="submit" loading={loading} color="purple" />
       </form>
       {/* <h2>{user ? "Online" : "Offline"}</h2>
       <button onClick={handleClickLogin}>Acceder</button> */}
