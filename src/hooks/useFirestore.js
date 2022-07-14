@@ -50,7 +50,7 @@ export const useFirestore = () => {
       };
       const docRef = doc(db, "urls", newDoc.nanoid);
       await setDoc(docRef, newDoc);
-      setData(...data, newDoc);
+      setData([...data, newDoc]);
     } catch (error) {
       console.log(error);
       setError(error.message);
