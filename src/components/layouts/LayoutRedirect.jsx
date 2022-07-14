@@ -4,8 +4,6 @@ import { Outlet, useParams } from "react-router-dom";
 import { useFirestore } from "../../hooks/useFirestore";
 import Title from "../Title";
 
-//para update
-
 const LayoutRedirect = () => {
   const { nanoid } = useParams();
   const { searchData } = useFirestore();

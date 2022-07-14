@@ -29,9 +29,9 @@ const Register = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: "galleta1@test.com",
-      password: "Galleta12",
-      repassword: "Galleta12",
+      email: "test2022@test.com",
+      password: "123456",
+      repassword: "123456",
     },
   });
 
