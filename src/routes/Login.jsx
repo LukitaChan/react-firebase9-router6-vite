@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { UserContext } from "../context/UseProvider";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,14 @@ import FormError from "../components/FormError";
 import FormImput from "../components/FormImput";
 import Title from "../components/Title";
 import Button from "../components/Button";
+import ButtonLoading from "../components/ButtonLoading";
 
 const Login = () => {
   //const [email, setEmail] = useState("galleta1@test.com");
   //const [password, setPassword] = useState("Galleta12");
 
   const { loginUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const navegate = useNavigate();
   const { required, patternEmail, minLength, validateTrim } = formValidate();
 
@@ -34,12 +36,15 @@ const Login = () => {
 
   const onSubmit = async ({ email, password }) => {
     try {
+      setLoading(true);
       await loginUser(email, password);
       //console.log("Usuario creado (0w0)");
       navegate("/");
     } catch (error) {
       const { code, message } = erroresFirebase(error.code);
       setError(code, { message: message });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,7 +89,7 @@ const Login = () => {
           <FormError error={errors.password} />
         </FormImput>
 
-        <Button text="Login" type="submit" />
+        <Button text="Login" type="submit" loading={loading} />
       </form>
       {/* <h2>{user ? "Online" : "Offline"}</h2>
       <button onClick={handleClickLogin}>Acceder</button> */}
