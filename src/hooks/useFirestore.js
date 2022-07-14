@@ -2,6 +2,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -91,6 +92,17 @@ export const useFirestore = () => {
     }
   };
 
+  const searchData = async (nanoid) => {
+    try {
+      const docRef = doc(db, "urls", nanoid);
+      const docSnap = await getDoc(docRef);
+
+      return docSnap;
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
+  };
   return {
     data,
     error,
@@ -99,5 +111,6 @@ export const useFirestore = () => {
     addData,
     deleteData,
     updateData,
+    searchData,
   };
 };
