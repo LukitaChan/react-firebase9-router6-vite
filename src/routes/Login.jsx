@@ -58,7 +58,7 @@ const Login = () => {
         <FormImput
           label="Ingresa tu email"
           type="email"
-          placeholder="Ingrese email"
+          placeholder="test2022@test.com"
           {...register("email", {
             required: required,
             pattern: patternEmail,
@@ -71,7 +71,7 @@ const Login = () => {
         <FormImput
           label="Ingresa tu password"
           type="password"
-          placeholder="Ingrese password"
+          placeholder="123456"
           {...register("password", {
             setValues: (v) => v.trim(),
             minLength: minLength,
