@@ -4,7 +4,7 @@ import Title from "../components/Title";
 const NotFound = () => {
   return (
     <>
-      <Title text="404" />
+      <Title text="404 Trate de logearse en nuestra app" />
     </>
   );
 };
