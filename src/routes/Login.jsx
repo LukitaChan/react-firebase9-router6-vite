@@ -25,7 +25,12 @@ const Login = () => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "test2022@test.com",
+      password: "123456",
+    },
+  });
 
   const onSubmit = async ({ email, password }) => {
     try {
@@ -58,7 +63,7 @@ const Login = () => {
         <FormImput
           label="Ingresa tu email"
           type="email"
-          placeholder="test2022@test.com"
+          placeholder="Ingrese Email"
           {...register("email", {
             required: required,
             pattern: patternEmail,
@@ -71,7 +76,7 @@ const Login = () => {
         <FormImput
           label="Ingresa tu password"
           type="password"
-          placeholder="123456"
+          placeholder="Ingrese Password"
           {...register("password", {
             setValues: (v) => v.trim(),
             minLength: minLength,
